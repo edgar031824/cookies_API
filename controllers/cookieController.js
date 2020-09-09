@@ -16,7 +16,7 @@ exports.getCookie = (req, res) => {
 	const googlecookie = cookies['addlt_consent'];
 	const euconsent_v2 = cookies['euconsent-v2'];
 	const _cmpRepromptHash = cookies['_cmpRepromptHash'];
-	const noniabvendorconsent = cookies['noniabvendorconsent '];
+	const noniabvendorconsent = cookies['noniabvendorconsent'];
 
 	// if there was a 'euconsent-v2' cookie present in the request, we send it's value back in the response's body
 	if (euconsent_v2) {
@@ -59,13 +59,8 @@ exports.saveCookie = (req, res) => {
 	}
 
 	if (noniabvendorconsent) {
-		console.log('here');
 		res.cookie('noniabvendorconsent', noniabvendorconsent, cookieSettings);
 	}
-
-	// this is only to replicate the cookieAccess API response headers
-	/* 	res.header("Access-Control-Allow-Methods", "*");
-		res.header("Access-Control-Allow-Headers", "Content-Type"); */
 
 	res.status(200).json({ msg: 'OK' });
 }
