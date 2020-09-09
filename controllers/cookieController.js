@@ -2,7 +2,7 @@ const striptags = require('striptags');
 
 // helper values
 const cookieSettings = {
-	domain: '.consensu.org', // top level domain to set the cookies
+	domain: '.qcinternal.io', // top level domain to set the cookies
 	secure: false, // setting secure flag to false so we can test everything up on a local environment without the need to setup certificates
 	sameSite: 'none', // setting the sameSite policies
 	maxAge: 1000 * 180 * 24 * 60 * 60, // cookie max age in miliseconds
