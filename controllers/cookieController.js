@@ -44,7 +44,7 @@ exports.saveCookie = (req, res) => {
 	const googlecookie = striptags(req.body['addlt_consent']);
 	const euconsent_v2 = striptags(req.body['euconsent-v2']);
 	const _cmpRepromptHash = striptags(req.body['_cmpRepromptHash']);
-	const noniabvendorconsent = striptags(req.body['noniabvendorconsent ']);
+	const noniabvendorconsent = striptags(req.body['noniabvendorconsent']);
 
 	if (googlecookie) {
 		res.cookie('addlt_consent', googlecookie, cookieSettings);
@@ -59,8 +59,13 @@ exports.saveCookie = (req, res) => {
 	}
 
 	if (noniabvendorconsent) {
+		console.log('here');
 		res.cookie('noniabvendorconsent', noniabvendorconsent, cookieSettings);
 	}
 
-	res.status(200).end();
+	// this is only to replicate the cookieAccess API response headers
+	/* 	res.header("Access-Control-Allow-Methods", "*");
+		res.header("Access-Control-Allow-Headers", "Content-Type"); */
+
+	res.status(200).json({ msg: 'OK' });
 }

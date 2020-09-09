@@ -5,7 +5,10 @@ const cookieParser = require("cookie-parser");
 const port = 4000;
 
 const corsOptions = {
-	origin: '*',
+	origin: function(origin, callback) {
+		// for this example let's simply accept calls from any domain
+		callback(null, true);
+	},
 	optionsSuccessStatus: 204,
 	credentials: true,
 	allowedHeaders: ['DNT', 'X-CustomHeader', 'Keep-Alive', 'User-Agent', 'X-Requested-With', 'If-Modified-Since', 'Cache-Control', 'Content-Type', 'Content-Range', 'Range', 'Pragma', 'Upgrade-Insecure-Requests'],
