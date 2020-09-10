@@ -49,7 +49,7 @@ server.use(function(err, req, res, next) {
 server.use('/api/cmpV2', require('./routes/cookie'));
 
 // the '0.0.0.0' is only fot the deployment using heroku
-server.listen('0.0.0.0', () => {
+server.listen(port, '0.0.0.0', () => {
 	console.log(`running on port ${port}`);
 });
 
