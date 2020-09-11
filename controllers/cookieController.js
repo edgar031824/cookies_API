@@ -2,7 +2,7 @@ const striptags = require('striptags');
 
 // helper values
 const cookieSettings = {
-	domain: '.qcinternal.io', // top level domain to set the cookies
+	domain: '.consensu.org', // top level domain to set the cookies
 	secure: true, // setting secure flag to false so we can test everything up on a local environment without the need to setup certificates
 	sameSite: 'none', // setting the sameSite policies
 	maxAge: 1000 * 180 * 24 * 60 * 60, // cookie max age in miliseconds
@@ -11,9 +11,8 @@ const cookieSettings = {
 // this method works only for v2
 exports.getCookie = (req, res) => {
 	let cookies = req.cookies;
-
 	let response = {};
-	const googlecookie = cookies['addlt_consent'];
+	const googlecookie = cookies['addtl_consent'];
 	const euconsent_v2 = cookies['euconsent-v2'];
 	const _cmpRepromptHash = cookies['_cmpRepromptHash'];
 	const noniabvendorconsent = cookies['noniabvendorconsent'];
@@ -28,7 +27,7 @@ exports.getCookie = (req, res) => {
 	}
 	// if there was a 'googlecookie' cookie present in the request, we send it's value back in the response's body
 	if (googlecookie) {
-		response['addlt_consent'] = striptags(googlecookie);
+		response['addtl_consent'] = striptags(googlecookie);
 	}
 	// if there was a 'noniabvendorconsent' cookie present in the request, we send it's value back in the response's body
 	if (noniabvendorconsent) {
@@ -36,18 +35,17 @@ exports.getCookie = (req, res) => {
 	}
 
 	res.status(200).json(response);
-
 }
 
 // this method works only for v2
 exports.saveCookie = (req, res) => {
-	const googlecookie = striptags(req.body['addlt_consent']);
+	const googlecookie = striptags(req.body['addtl_consent']);
 	const euconsent_v2 = striptags(req.body['euconsent-v2']);
 	const _cmpRepromptHash = striptags(req.body['_cmpRepromptHash']);
 	const noniabvendorconsent = striptags(req.body['noniabvendorconsent']);
 
 	if (googlecookie) {
-		res.cookie('addlt_consent', googlecookie, cookieSettings);
+		res.cookie('addtl_consent', googlecookie, cookieSettings);
 	}
 
 	if (euconsent_v2) {

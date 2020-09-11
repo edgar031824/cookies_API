@@ -25,7 +25,6 @@ const validateLength = (req, res, next) => {
 		} else {
 			next();
 		}
-
 	} catch (error) {
 		res.status.json(error);
 	}
