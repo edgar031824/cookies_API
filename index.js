@@ -41,7 +41,7 @@ server.use(function(err, req, res, next) {
 	}
 });
 
-server.use('/', require('./routes/cookie'));
+server.use('/api', require('./routes/cookie'));
 
 // the '0.0.0.0' is only fot the deployment using heroku
 server.listen(port, '0.0.0.0', () => {
